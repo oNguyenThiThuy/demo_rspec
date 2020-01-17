@@ -1,0 +1,25 @@
+version: '3.3'
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_TCP_PORT: 3307
+    ports:
+      - "3307:3307"
+  app:
+    container_name: demo_redmine
+    ports:
+      - 3000:3000
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+  # redmine:
+  #   image: redmine
+  #   restart: always
+  #   ports:
+  #     - 8080:3000
